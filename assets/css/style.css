@@ -28,7 +28,7 @@ animation: pop-up1 1s ease-out;
 
  @font-face {
   font-family: 'family-name';
-  src: url('https://zyyo.cc/file/1.woff');
+  src: url('');
   font-display: swap;
 }
 *{font-family: "family-name"}

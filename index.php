@@ -1,3 +1,6 @@
+<?php
+require_once('./jump/WxqqJump.php');
+?/
 
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -150,6 +153,7 @@
 
  
 </body>
+<!--
 <script>
     /***
  * 愚人节彩蛋 - 你屏幕上有根毛
@@ -173,4 +177,5 @@
     document.body.append(foolsEgg);
 } ();
     </script>
+-->
 </html>
