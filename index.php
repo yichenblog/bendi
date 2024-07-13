@@ -1,6 +1,6 @@
 <?php
 require_once('./jump/WxqqJump.php');
-?/
+?>
 
 <!DOCTYPE html>
 <html lang="zh-CN">
