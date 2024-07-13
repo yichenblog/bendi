@@ -50,6 +50,9 @@ require_once('./jump/WxqqJump.php');
     <!--引入css文件-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/new_file.css">
+    <!--51统计-->
+    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id:"KRt6E42c1UxwGIdQ",ck:"KRt6E42c1UxwGIdQ"})</script>
 </head>
 <body>
 
