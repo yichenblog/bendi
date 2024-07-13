@@ -16,7 +16,7 @@ if(strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/')||strpos($_SERVER['HTTP_USER_AGENT'
     && strpos($_SERVER['REQUEST_URI'], strval($conf["payurl"]))===false
 
     && $conf["wxqqjump"]==="yes"){
-   $siteurl='http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+    $siteurl='https://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["REQUEST_URI"];
 
 
 echo '<html>
