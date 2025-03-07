@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网盘限速解决方案教程</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --warning-color: #ff6b6b;
+            --background-color: #f5f5f5;
+            --card-background: #ffffff;
+            --text-color: #333;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(to bottom right, #f5f5f5, #e8edf2);
+            color: var(--text-color);
+        }
+
+        /* 标题区域优化 */
+        header {
+            text-align: center;
+            background: var(--card-background);
+            padding: 25px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+        }
+
+        /* 公告样式重新设计 */
+        .announcement-wrapper {
+            margin: -20px auto 30px;
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .announcement {
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            padding: 25px 20px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(255, 107, 107, 0.4);
+            border-radius: 20px;
+        }
+
+        .announcement::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+        }
+
+        .announcement-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .announcement-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .announcement:hover .announcement-title::after {
+            transform: scaleX(1);
+        }
+
+        .announcement-icon {
+            font-size: 28px;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .announcement-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 700px;
+            line-height: 1.8;
+            font-size: 1.1em;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .announcement-content:hover {
+            transform: translateY(-3px);
+        }
+
+        .announcement-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            animation: shine 3s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+                opacity: 0;
+            }
+            20% {
+                left: 100%;
+                opacity: 0.5;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+
+        /* 卡片容器样式 */
+        .video-container, .download-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-container:hover, .download-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 视频容器样式优化 */
+        .video-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .video-container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .video-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            border-radius: 2px;
+        }
+
+        /* 视频样式优化 */
+        video {
+            width: 100%;
+            max-width: 800px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+        }
+
+        .video-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: var(--border-radius);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+            pointer-events: none;
+        }
+
+        video:hover {
+            transform: scale(1.02);
+        }
+
+        /* 下载工具区域样式 */
+        .download-tools {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);  /* 改为两列布局 */
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* 下载工具卡片优化 */
+        .tool {
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        .tool:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 35px rgba(52, 152, 219, 0.2);
+        }
+
+        .tool-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tool h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .tool p {
+            margin: 8px 0;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .tool p:last-of-type {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: auto;
+            padding: 10px 0;
+        }
+
+        /* 下载按钮优化 */
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+            background: linear-gradient(135deg, #2980b9, #3498db);
+        }
+
+        /* 标题样式 */
+        h1, h2 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding-bottom: 15px;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            border-radius: 2px;
+        }
+
+        /* 动画效果 */
+        @keyframes glow {
+            from { box-shadow: 0 4px 20px rgba(231, 76, 60, 0.4); }
+            to { box-shadow: 0 4px 30px rgba(231, 76, 60, 0.8); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* 响应式优化 */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                padding: 15px 10px;
+                margin-bottom: 15px;
+            }
+
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .announcement-wrapper {
+                margin: -10px auto 20px;
+                padding: 0 15px;
+            }
+
+            .announcement {
+                padding: 20px 15px;
+                border-radius: 15px;
+            }
+
+            .announcement-title {
+                font-size: 1.1em;
+                margin-bottom: 12px;
+            }
+
+            .announcement-icon {
+                font-size: 24px;
+                margin-bottom: 12px;
+            }
+
+            .announcement-content {
+                padding: 15px;
+                margin: 8px auto;
+                font-size: 1em;
+                border-radius: 12px;
+            }
+
+            /* 标题移动端优化 */
+            h1 {
+                font-size: 1.8em;
+                padding: 0 10px 15px;
+            }
+
+            /* 公告移动端优化 */
+            .announcement {
+                margin: -10px -10px 20px -10px;
+                padding: 15px 10px;
+                font-size: 1em;
+                border-radius: 0 0 var(--border-radius) var(--border-radius);
+            }
+
+            .announcement::before {
+                font-size: 1.1em;
+                margin-bottom: 10px;
+            }
+
+            .announcement-content {
+                padding: 15px;
+                font-size: 0.95em;
+                margin: 5px;
+            }
+
+            .announcement-icon {
+                font-size: 1.5em;
+            }
+
+            /* 卡片容器移动端优化 */
+            .video-container, .download-section {
+                padding: 15px;
+                margin: 20px 0;
+                border-radius: 10px;
+            }
+
+            /* 视频容器移动端优化 */
+            .video-container h2 {
+                font-size: 1.4em;
+                margin-bottom: 15px;
+            }
+
+            /* 下载工具卡片移动端优化 */
+            .download-tools {
+                grid-template-columns: 1fr;  /* 移动端改为单列 */
+                gap: 20px;
+            }
+
+            .tool {
+                padding: 15px;
+                margin: 10px 0;
+            }
+
+            .tool h3 {
+                font-size: 1.3em;
+                margin-bottom: 15px;
+            }
+
+            /* 下载按钮移动端优化 */
+            .download-btn {
+                width: 100%;
+                padding: 12px 20px;
+                font-size: 0.95em;
+                margin-top: 15px;
+            }
+
+            /* 步骤列表移动端优化 */
+            .steps-list li {
+                padding: 15px 15px 15px 55px;
+                margin: 15px 0;
+                font-size: 0.95em;
+            }
+
+            .steps-list li::before {
+                width: 30px;
+                height: 30px;
+                left: 12px;
+                font-size: 0.9em;
+            }
+
+            /* 提示文本移动端优化 */
+            .tips-text {
+                padding: 15px;
+                margin: 15px 0;
+                font-size: 0.9em;
+            }
+
+            /* 页脚移动端优化 */
+            footer {
+                margin-top: 40px;
+                padding: 20px 15px;
+            }
+
+            footer p {
+                font-size: 0.9em;
+                padding: 0 10px;
+            }
+        }
+
+        /* 小屏幕设备额外优化 */
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.3em;
+            }
+
+            .announcement-wrapper {
+                padding: 0 10px;
+            }
+
+            .announcement {
+                padding: 15px 10px;
+                border-radius: 12px;
+            }
+
+            .announcement-content {
+                padding: 12px;
+                font-size: 0.9em;
+                border-radius: 10px;
+            }
+
+            .tool {
+                padding: 12px;
+            }
+
+            .download-btn {
+                font-size: 0.9em;
+                padding: 10px 15px;
+            }
+        }
+
+        /* 步骤列表美化 */
+        .steps-list {
+            list-style: none;
+            counter-reset: step;
+            padding: 0;
+            margin: 30px 0;
+        }
+
+        .steps-list li {
+            position: relative;
+            margin: 20px 0;
+            padding: 20px 20px 20px 70px;
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .steps-list li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary-color), #2980b9);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .steps-list li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 提示文本美化 */
+        .tips-text {
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+            border-left: 4px solid var(--primary-color);
+            font-size: 0.95em;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* 页脚美化 */
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border-radius: var(--border-radius);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+
+        footer p {
+            color: var(--secondary-color);
+            font-size: 1.1em;
+            opacity: 0.8;
+            margin: 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        footer p::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        footer:hover p::after {
+            transform: scaleX(1);
+        }
+
+        /* 段落文本美化 */
+        .download-section p {
+            line-height: 1.8;
+            color: #555;
+            margin: 15px 0;
+        }
+
+        /* 标题美化增强 */
+        .download-section h2 {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .download-section h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 70%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        /* 联系方式区域样式 */
+        .contact-section {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-title {
+            color: var(--secondary-color);
+            font-size: 1.5em;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .contact-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            min-width: 200px;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.2);
+        }
+
+        .contact-item i {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .contact-item h4 {
+            color: var(--secondary-color);
+            margin: 10px 0;
+        }
+
+        .contact-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .contact-methods {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .contact-item {
+                min-width: unset;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>网盘限速解决方案教程</h1>
+        <p>学习如何应对网盘动态限速，获得更好的下载体验</p>
+    </header>
+
+    <div class="announcement-wrapper">
+        <div class="announcement">
+            <span class="announcement-icon">⚠️</span>
+            <div class="announcement-title">重要提示</div>
+            <div class="announcement-content">
+                由于挂载的网盘动态限速，如果出现限速状态，强烈建议各位下载的时候看下载教程用官方链接下载！
+            </div>
+        </div>
+    </div>
+
+    <div class="video-container">
+        <h2>教程视频</h2>
+        <div class="video-wrapper">
+            <video controls>
+                <source src="http://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/510588854607.mp4" type="video/mp4">
+                您的浏览器不支持视频播放。
+            </video>
+        </div>
+    </div>
+
+    <div class="download-section">
+        <h2>网盘限速说明</h2>
+        <div class="warning-text">
+            由于挂载的网盘动态限速，如果出现限速状态，强烈建议各位下载的时候看下载教程用官方链接下载！
+        </div>
+        
+        <div class="download-tools">
+            <div class="tool">
+                <div class="tool-content">
+                    <h3>1DM+ (Android)</h3>
+                    <p>1DM+是一款安卓端下载神器，支持多线程下载、断点续传。</p>
+                    <p>适用于Android系统，文件大小：12MB</p>
+                </div>
+                <a href="http://45.207.195.42:8888/down/b8kYSKm0iZc7.apk" class="download-btn">1DM+ (Android) 点击下载</a>
+            </div>
+            
+            <div class="tool">
+                <div class="tool-content">
+                    <h3>Neat Download Manager (Windows)</h3>
+                    <p>Neat Download Manager是一款轻量级下载工具，支持多线程下载、浏览器集成。</p>
+                    <p>适用于Windows系统，文件大小：5MB</p>
+                </div>
+                <a href="http://45.207.195.42:8888/down/MKVmcPKqOaR2.exe" class="download-btn">Neat Download Manager (Windows) 点击下载</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="download-section">
+        <h2>解决网盘限速的方法</h2>
+        <ol class="steps-list">
+            <li>首先确认是否遇到了网盘限速问题</li>
+            <li>按照视频教程中的方法使用官方链接下载</li>
+            <li>如果仍然遇到问题，可以尝试视频中介绍的其他方法</li>
+            <li>合理安排下载时间，避开高峰期</li>
+        </ol>
+        <div class="tips-text">
+            如果遇到任何问题，请仔细观看视频教程，或者在下方留言区留言。
+        </div>
+    </div>
+
+    <div class="contact-section">
+        <h3 class="contact-title">联系我们</h3>
+        <div class="contact-methods">
+            <div class="contact-item">
+                <i>👥</i>
+                <h4>QQ交流群</h4>
+                <a href="https://qm.qq.com/q/YXcXHp5R0C" target="_blank">点击加入QQ群</a>
+            </div>
+            <div class="contact-item">
+                <i>📧</i>
+                <h4>电子邮箱</h4>
+                <a href="mailto:yic@rl1.cc">yic@rl1.cc</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2023 一加官方ROM包下载站 - 帮助用户解决网盘限速问题</p>
+    </footer>
+</body>
+</html>
