@@ -764,6 +764,38 @@
                 padding: 15px;
             }
         }
+
+        /* 添加评论区容器 */
+        .comment-section {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-title {
+            color: var(--secondary-color);
+            font-size: 1.5em;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .comment-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+        }
+
+        #waline {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -848,8 +880,28 @@
         </div>
     </div>
 
+    <!-- 添加评论区容器 -->
+    <div class="comment-section">
+        <h3 class="comment-title">评论区</h3>
+        <div id="waline"></div>
+    </div>
+
     <footer>
         <p>© 2023 一加官方ROM包下载站 - 帮助用户解决网盘限速问题</p>
     </footer>
+
+    <!-- 引入 Waline -->
+    <script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css"/>
+
+    <!-- 初始化 Waline -->
+    <script>
+        Waline.init({
+            el: '#waline',
+            serverURL: 'https://pl.rl1.cc/', // 这里需要替换为您的 Waline 服务端地址
+            dark: 'auto',
+            // 其他配置项...
+        });
+    </script>
 </body>
 </html>
