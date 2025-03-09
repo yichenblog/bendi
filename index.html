@@ -55,108 +55,178 @@ require_once('./jump/WxqqJump.php');
     <!--51统计-->
     <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
 <script>LA.init({id:"KRt6E42c1UxwGIdQ",ck:"KRt6E42c1UxwGIdQ"})</script>
+    <style>
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(3px);
+        }
+
+        .popup-content {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            width: 400px;
+            text-align: center;
+            position: relative;
+            animation: popup-show 0.3s ease;
+        }
+
+        @keyframes popup-show {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .popup-title {
+            font-size: 18px;
+            color: #e74c3c;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .popup-message {
+            color: #2c3e50;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .popup-close {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .popup-close:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
+    <div class="popup-overlay" id="popup">
+        <div class="popup-content">
+            <div class="popup-title">⚠️ 重要提示</div>
+            <div class="popup-message">最近号卡爆仓，审核发货较慢，请各位耐心等待，谢谢！</div>
+            <button class="popup-close" onclick="closePopup()">我知道了</button>
+        </div>
+    </div>
 
-
-
-
-
-        <div class="mian dh1">
-            <!-- 上部分 -->
-            <div class="main-top">
-                <div class="main-top-title">
-                    <!-- 大标题 -->
-                    <h1>好卡好货店铺</h1>
-                    <!-- 头像 -->
-                    <a href="index.html"><img src="https://q1.qlogo.cn/g?b=qq&nk=2980652565&s=640" alt=""></a>
-                </div>
-                <!-- 简介 -->
-                <div class="main-top-Brief">
-                    <p>好卡好货店铺,正规大流量卡,专注于客户体验</p>
-                
-                </div>
-                
-              
-                              <div class="main-top-tb">
-
-
-
-                   
-                   <a href="tp/wx.png" class="main-bot-tb-2" title="微信"><i class="iconfont icon-wxtb"></i></a>
-                 
-                    <!--  原微信显示 <a href="tp/wx.png" class="main-bot-tb-2" title="微信"><img src="tp/wxicon.png"  border="0" width="220" height="100"></i></a> -->
-                    <a href="http://wpa.qq.com/msgrd?v=3&uin=2913215281&site=qq&menu=yes" class="main-bot-tb-3" title="QQ"><i class="iconfont icon-QQ"></i></a>
-                    <a href="mailto:yic@rl1.cc" class="main-bot-tb-4" title="邮件"><i class="iconfont icon-email-fill"></i></a>
-                </div>
+    <div class="mian dh1">
+        <!-- 上部分 -->
+        <div class="main-top">
+            <div class="main-top-title">
+                <!-- 大标题 -->
+                <h1>好卡好货店铺</h1>
+                <!-- 头像 -->
+                <a href="index.html"><img src="https://q1.qlogo.cn/g?b=qq&nk=2980652565&s=640" alt=""></a>
             </div>
-            <!-- 下部分 -->
-            <div class="main-bot">
-                <!-- 小图标区域 -->
+            <!-- 简介 -->
+            <div class="main-top-Brief">
+                <p>好卡好货店铺,正规大流量卡,专注于客户体验</p>
+            
+            </div>
+            
+          
+                            <div class="main-top-tb">
+
+
+
+               
+               <a href="tp/wx.png" class="main-bot-tb-2" title="微信"><i class="iconfont icon-wxtb"></i></a>
+             
+                <!--  原微信显示 <a href="tp/wx.png" class="main-bot-tb-2" title="微信"><img src="tp/wxicon.png"  border="0" width="220" height="100"></i></a> -->
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=2913215281&site=qq&menu=yes" class="main-bot-tb-3" title="QQ"><i class="iconfont icon-QQ"></i></a>
+                <a href="mailto:yic@rl1.cc" class="main-bot-tb-4" title="邮件"><i class="iconfont icon-email-fill"></i></a>
+            </div>
+        </div>
+        <!-- 下部分 -->
+        <div class="main-bot">
+            <!-- 小图标区域 -->
  
-                
-                <!-- 下部分副标题
-                <div class="main-bot-title">
-                   <h3>我的站点</h3>
-                </div>
-                -->
-                <!-- 下部分内容区 -->
-                <div class="main-bot-nr dh">
-                    <a href="https://haokawx.lot-ml.com/Product/Index/78643" class="main-bot-nr-kp">
-                        <div class="main-bot-nr-kp-k">
-                            <div class="main-bot-nr-kp-k-img"><img src="tp/kun1.jpg" alt="" class="kkk"></div>
-                           <div class="main-bot-nr-kp-k-n">
-                               <span class="p1">流量卡1 店(荐)</span>
-                               <span class="p2">免费领取正规大流量卡</span>
-                           </div>
-                        </div>
-                    </a>
-                  <!--
-                    <a href="https://91haoka.cn/webapp/weixiaodian/index.html?shop_id=470560" class="main-bot-nr-kp">
-                        <div class="main-bot-nr-kp-k">
-                            <div class="main-bot-nr-kp-k-img"><img src="tp/kun4.jpg" alt="" class="kkk"></div>
-                           <div class="main-bot-nr-kp-k-n">
-                               <span class="p1">流量卡2店</span>
-                               <span class="p2">免费领取正规大流量卡</span>
-                           </div>
-                        </div>
-                    </a>
-                      -->
-			
-                    <a href="tp/wx.png" class="main-bot-nr-kp">
-                        <div class="main-bot-nr-kp-k">
-                            <div class="main-bot-nr-kp-k-img"><img src="tp/kun3.jpg" alt="" class="kkk"></div>
-                           <div class="main-bot-nr-kp-k-n">
-                               <span class="p1">招收代理</span>
-                               <span class="p2">免费招收代理</span>
-                           </div>
-                        </div>
-                    </a>
+            
+            <!-- 下部分副标题
+            <div class="main-bot-title">
+               <h3>我的站点</h3>
+            </div>
+            -->
+            <!-- 下部分内容区 -->
+            <div class="main-bot-nr dh">
+                <a href="https://haokawx.lot-ml.com/Product/Index/78643" class="main-bot-nr-kp">
+                    <div class="main-bot-nr-kp-k">
+                        <div class="main-bot-nr-kp-k-img"><img src="tp/kun1.jpg" alt="" class="kkk"></div>
+                       <div class="main-bot-nr-kp-k-n">
+                           <span class="p1">流量卡1 店(荐)</span>
+                           <span class="p2">免费领取正规大流量卡</span>
+                       </div>
+                    </div>
+                </a>
+              <!--
+                <a href="https://91haoka.cn/webapp/weixiaodian/index.html?shop_id=470560" class="main-bot-nr-kp">
+                    <div class="main-bot-nr-kp-k">
+                        <div class="main-bot-nr-kp-k-img"><img src="tp/kun4.jpg" alt="" class="kkk"></div>
+                       <div class="main-bot-nr-kp-k-n">
+                           <span class="p1">流量卡2店</span>
+                           <span class="p2">免费领取正规大流量卡</span>
+                       </div>
+                    </div>
+                </a>
+                  -->
+		
+                <a href="tp/wx.png" class="main-bot-nr-kp">
+                    <div class="main-bot-nr-kp-k">
+                        <div class="main-bot-nr-kp-k-img"><img src="tp/kun3.jpg" alt="" class="kkk"></div>
+                       <div class="main-bot-nr-kp-k-n">
+                           <span class="p1">招收代理</span>
+                           <span class="p2">免费招收代理</span>
+                       </div>
+                    </div>
+                </a>
 
 <a href="https://hk.rl1.cc/" class="main-bot-nr-kp">
-                        <div class="main-bot-nr-kp-k">
-                            <div class="main-bot-nr-kp-k-img"><img src="tp/kun2.jpg" alt="" class="kkk"></div>
-                           <div class="main-bot-nr-kp-k-n">
-                               <span class="p1">常见问题详细</span>
-                               <span class="p2">流量卡常见问题详细</span>
-                           </div>
-                        </div>
-                    </a>
+                    <div class="main-bot-nr-kp-k">
+                        <div class="main-bot-nr-kp-k-img"><img src="tp/kun2.jpg" alt="" class="kkk"></div>
+                       <div class="main-bot-nr-kp-k-n">
+                           <span class="p1">常见问题详细</span>
+                           <span class="p2">流量卡常见问题详细</span>
+                       </div>
+                    </div>
+                </a>
 
-       
+   
 
-                </div>
-                <!-- 下部分内容区 end-->
-                
             </div>
+            <!-- 下部分内容区 end-->
+            
         </div>
+    </div>
 
-        <!-- 版权声明 -->
-        <div class="footer">
-            Copyright © 2022- <span>2024</span> <a href="3.rl1.cc" class="footer-link">好卡好货店铺</a> 
-            </br>
-            🌸桂ICP备2022011215号
-        </div>
+    <!-- 版权声明 -->
+    <div class="footer">
+        Copyright © 2022- <span>2024</span> <a href="3.rl1.cc" class="footer-link">好卡好货店铺</a> 
+        </br>
+        🌸桂ICP备2022011215号
+    </div>
 
 
 
@@ -187,4 +257,9 @@ require_once('./jump/WxqqJump.php');
 } ();
     </script>
 -->
+<script>
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+</script>
 </html>
