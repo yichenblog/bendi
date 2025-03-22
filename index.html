@@ -51,10 +51,19 @@
         
         // 禁用长按弹出菜单
         document.addEventListener('touchstart', function(e) {
+            // 检查是否是弹窗相关元素
+            if (e.target.id === 'popup-close-btn' || 
+                e.target.closest('#popup-close-btn') || 
+                e.target.id === 'popup' || 
+                e.target.closest('#popup')) {
+                return; // 对于弹窗元素，不拦截事件
+            }
+            
+            // 对于非弹窗元素，阻止长按菜单
             e.target.addEventListener('touchend', function(e) {
                 e.preventDefault();
             }, {once: true});
-        });
+        }, { passive: false });
         
         // 阻止选择文本
         document.addEventListener('selectstart', function(e) {
@@ -178,16 +187,42 @@
             background: #3498db;
             color: white;
             border: none;
-            padding: 8px 25px;
+            padding: 12px 28px;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 16px;
             transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent; /* 移除移动端点击高亮 */
+            touch-action: manipulation; /* 优化触摸操作 */
+            user-select: none; /* 防止文本选择 */
         }
 
         .popup-close:hover {
             background: #2980b9;
             transform: translateY(-2px);
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 480px) {
+            .popup-content {
+                padding: 20px;
+                width: 90%;
+                max-width: 320px;
+            }
+            
+            .popup-title {
+                font-size: 16px;
+            }
+            
+            .popup-message {
+                font-size: 14px;
+            }
+            
+            .popup-close {
+                padding: 10px 25px;
+                font-size: 14px;
+                margin-top: 5px;
+            }
         }
     </style>
 </head>
@@ -196,7 +231,7 @@
         <div class="popup-content">
             <div class="popup-title">⚠️ 重要提示</div>
             <div class="popup-message">最近号卡爆仓，审核发货较慢，请各位耐心等待，谢谢！</div>
-            <button class="popup-close" onclick="closePopup()">我知道了</button>
+            <button type="button" class="popup-close" id="popup-close-btn">我知道了</button>
         </div>
     </div>
 
@@ -326,8 +361,41 @@
     </script>
 -->
 <script>
+    // 关闭弹窗函数
     function closePopup() {
-        document.getElementById('popup').style.display = 'none';
+        var popup = document.getElementById('popup');
+        if (popup) {
+            popup.style.display = 'none';
+        }
     }
+
+    // 确保DOM加载完成后执行
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取弹窗和关闭按钮
+        var popup = document.getElementById('popup');
+        var closeBtn = document.getElementById('popup-close-btn');
+        
+        if (popup && closeBtn) {
+            // 为关闭按钮添加点击事件
+            closeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                closePopup();
+            });
+            
+            // 为关闭按钮添加触摸事件
+            closeBtn.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                closePopup();
+            });
+            
+            // 修复可能的触摸事件问题
+            closeBtn.addEventListener('touchstart', function(e) {
+                // 阻止事件冒泡，确保不会触发我们在页面上设置的其他touchstart处理程序
+                e.stopPropagation();
+            });
+        }
+    });
 </script>
 </html>
