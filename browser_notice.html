@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <!-- 防止QQ和微信自动探测或绕过 -->
+    <meta name="robots" content="noarchive">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <!-- 屏蔽微信和QQ -->
+    <meta itemprop="wxopenid" content="no_wx">
+    <meta name="applicable-device" content="pc,mobile">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <title>请使用系统浏览器访问</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        .container {
+            max-width: 90%;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #e74c3c;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: #e74c3c;
+        }
+        .browsers {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .browser {
+            width: 60px;
+            text-align: center;
+        }
+        .browser img {
+            width: 40px;
+            height: 40px;
+        }
+        .browser p {
+            margin-top: 5px;
+            font-size: 12px;
+        }
+        .url-container {
+            margin: 20px 0;
+            padding: 10px;
+            background: #f1f1f1;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 14px;
+            overflow-wrap: break-word;
+            word-break: break-all;
+        }
+        .copy-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .copy-btn:hover {
+            background: #2980b9;
+        }
+        .copy-success {
+            color: #27ae60;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+    <script>
+        // 禁用右键菜单和长按菜单
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        
+        // 禁用长按弹出菜单
+        document.addEventListener('touchstart', function(e) {
+            var target = e.target;
+            if (target.id !== 'currentUrl' && !target.classList.contains('copy-btn')) {
+                target.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                }, {once: true});
+            }
+        });
+        
+        // 创建iframe检测
+        if (window != top) {
+            top.location.href = window.location.href;
+        }
+        
+        // 持续检测是否在WeChat或QQ中
+        setInterval(function() {
+            var ua = navigator.userAgent.toLowerCase();
+            var isWeixin = ua.indexOf('micromessenger') != -1;
+            var isQQ = ua.indexOf(' qq/') != -1 || ua.indexOf('mqqbrowser') != -1;
+            
+            // 如果页面被刷新或重定向尝试返回
+            if (!isWeixin && !isQQ) {
+                // 获取来源页面
+                var sourceUrl = document.referrer || localStorage.getItem('originalUrl');
+                if (sourceUrl && sourceUrl.indexOf('browser_notice.html') === -1) {
+                    window.location.href = sourceUrl;
+                }
+            }
+        }, 1000);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">⚠️</div>
+        <h1>请使用系统浏览器访问</h1>
+        <p>抱歉，本网站不支持在微信或QQ内置浏览器中访问。</p>
+        <p>请复制以下链接，然后在系统浏览器（Chrome、Safari或Firefox等）中粘贴并访问：</p>
+        <div class="url-container" id="currentUrl"></div>
+        <button class="copy-btn" onclick="copyToClipboard()">复制链接</button>
+        <div class="copy-success" id="copySuccess">✓ 复制成功</div>
+        <div class="browsers">
+            <div class="browser">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADtUlEQVR4nO2Zz08TQRTHNzM0MQHixaMnI3+AJv4FHjTxYEx6kKgHD4qJIXrxoAc18SBKoiax/hMkpDZGKCASfzAgaERloQUE+kO2FtoChelud1t2meckA+w+YHeluy2EfZJvApOZ95n3ffPezEIQxRRTTJdAEASEEAKrT6vXrb5j9Sw/jDFKJBKz6XT6Q6lUWkbYzq92/l0qlVqnlM6l0+lillL6Q4yV0oSQz3me38zn83T//p5ntVqdhDFepJQO8jz/heO4Tzdu/L5aLpf/4O+/HzbTtPDIyAgNBAKyaJ7n+bVcLkdrtRqt1+t0aGhoR4wV4pz0+fF43BL8fy2Xy1Gn00kBAAMYMEugiVgs9pNS+m1/q1arNBgM0mw2S4vFIs3lcoZYi+M4jsZisd+7J7VYLNJQKEQnJiYuEbYfQghdEfM1PT3N5/P5Kb2BK5UKjUajdHZ21hBrp2ZmZl719oAohuO4yWKxuKC38UQiQYeHh+ns7KwpfG9iGGN3LBb7CgCzbgkBgHQBe2NMbWxslERXMIMXE4vFGgihMUmEoMlOWXZ+ePjJULlcPrKSt4JHLN5MrN6WuFz3HjkcDve5c2dPXbhwvt/hcBxXk8EYR8S63W5ufHycbzkPBAJfwuHwqzNnTp8AQkJATbVa7Xs0Gn0jxEQikRXBrMrlcpQQMul2u98LxgoEAu9E/ZLDCKkJEPRIy9FYPP5c73JPT0/Tvr4+6na7idPpJDMzM7ZEIvGstzYSiYzF4/GnWgJ6a1tbW9TlchGXy0VcLhdxu90BLQFafdRcpVKhXq+XuN1u4nK5SH9//5S9WJyd0RNgtnw+T/1+v1UBxh4CotHoWqFQoMPDw4QQQpLJ5LbP5/smXC5KpVK7ent4FxCJRF57vV4KACXxtHU6HO7efiLUBoNBmkwm6cOHD+jIyMizQqGwHAqFnty7d/ceAOyfFRAEAY6Njb3y+XzU5/MtA8D+3QIAoD02Nvba7/dTPQFWb6NgMPiqmQKsXsN+v//1wYMHCGKRoCkCRkaGFzGO6h0D5gQAGMEYRxALhFgjKBQKLxNC/uwQkEhcXFlZOQYAyOrfRiPzAdls9vjKysrxYDB4ESG0jDFeoZTOI4RWEJb3AbS1tfV0ZWXlxPnz544BABIIT5UHAUQQuqNRKxrrHQStANAKANRsrDSOEJoGgLsA0N9MrF6tCAGAHQDaAODUYe6dYoopplj/h/4Cyd8qzW7gIlQAAAAASUVORK5CYII=" alt="Chrome">
+                <p>Chrome</p>
+            </div>
+            <div class="browser">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFEklEQVR4nO2ZWUxcVRjHj7HGJ01MfPDFxMRX42VmWMpSWmhnhtJhaaesPSzDMjAw+75vUyAW0DIwAzNDW6APbdOmadImbYJN46MPNjFqYtLEpH0yMSbG+OCLx3OGQsMMw9wy49RL8k9O7j3fXf7fd+8595wLAKlJTWrS/yd8czXgm6vxiE3rrNi0LkdsWvvQkV5KBXRDXvCNRMA3EgGhJ4VO6IFUQDdQEzGnwfDM6TNnXjl34f23RkaH37py5bPtTGZzM2DuwCo2rQcbNWdm9PUgYGhogJZILz4TCAQSG0Oj5vnzH7yZSOHA4FCfZn5+/lcqg5Z49uzrWYnE56NSqcWlpVkyVS0Ws4u7u9v08fGxUiKlvdcQP1dPZTKelsvEqUTSWzw62veqRHLRTKUSt3t6unuGhwfbyZT65paGwmQyalSSWjKVSsqkF2QUCil75crFd8h0lrZuWltWNnRX2qnpVM1kMkXsT/GUXIZjc35uNptVpYSySiQSC4k0i1RGTalUkLOzU51arYpBpdZ7Z2YmTHRmK7uQX5VEolFUKiWZRCJVjoyOFBMpTaXQJ6JRKZ/BYNTT09/bPDk53kyj0d6dnp4cmp+f9czPz3qWlubcly5NtZJpvbOXxnsnJgIui1lPzcvL+3Nzc3MTACC3EK1LnVGp9FaCz2BwMoNS+bpIJDpEJDS0tHV0Tk9PnXW73S673e60WCxOi8XqtFjsTovVuhA01WggIa3QYjfE94NOq821sbGxD3NqmUwmhdfrfWJnZ2cvYnNv768/bQR8V3e2t7f3zUab93g8j2i12mcK1SLRG0gOUgNuYmFh4eu1tbXvotHo19Fo9Buxw/FkIBColMvljwkEwsFSUvnhxcXF92/evPnD7du3f7p16xY6iD9VVqsvbG5u/r6/v//nzs5OVC6XPwkA2V+mSEKZUfJ5YWFhmeDnSFBKKqsaGho6R6MR2wQCwUO1tbUHfT7fc2vr63/Qmc1P+v3+F7wezyE2u+VhnU73qM1me9xut9cODg6e9/v9dV6v91CHXn+4uroaVFVV5RSqQTgChUQELBaL2+VyRZRK5Wo4HN6dm5vbIJNJK8PDw9OTk5Orc3Nz2yzWRpXDYX9ueHhoaXp6enVmZmZ9Zmb248nJyVa/33/e6/UueDyeKKRQJC9AKpU+4nA4XjKbzRtOp3PLbrdjA/2aTqOuulyubbvdvqVSqbZ0Ot2mwaB/3mQyvWQ2m191OBxbRqPxvWg0er9SqcSWzq1CRQiOQCj5R2hkZOQsnU5/vLOz8zxgkVQ2qxCLxY/V19c/0NDQcCQQCFScPHmy0u/3H/N6vUf9fn+l3+9/AlIoKtE6zM3NhV6v93iXTlvBZnMOYmMiGAyeqampeVosFr/Q3d39vEQiOVZTU1MGKVTcAqhU6nMWi+Ww0+F41qjXH7LZbMeHhoZehB1Y+RBLGrfbXe50Oo9ZrdbDbDY7cPLkydcglerb29uPdXR0HIdkvyEgPQLxUFRU9EDMg+eRsU5UFxZJZaU2m/2AQqG4z+fzFScOIgMEWolMJrsPYrUvEQTsHQDEULa8vPz+enp6Ce04kX8wQBCw0/iykCnMZPLpnp6eAYPBUG+z2V5LtS0xNDTUaLPZjhgMhoGOjo6BRExeAOyNu45J10lDf44UJE08BMxitZQRioUP7r4mNalJTa7r+BfJbJE99KSUDAAAAABJRU5ErkJggg==" alt="Safari">
+                <p>Safari</p>
+            </div>
+            <div class="browser">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFUUlEQVR4nO2Za2wVRRTHd++9bW1LQSBAC6UktbZVECkFLK1QgQKWt7wptFgLLZS3KEh5iDyUIALho4DSgBQ/GIMhkIgQDETiB0UMGF8Ro0Z8xETU+MFoMB7PXHcv3e7O7N7be6FS/Sd/0t47Z87538zszJkLUEABBRTw/wHHcTmO4zKA39v5LhkWcnNzc1JSUoZwHLc4Kyur/vzFqsdr169eun3nduXTp08vP3v27NyxY9WnJ02ZPHH4iOGDsrOzp2VkZKxOS0vbkJqa+gnHcR2TKh7HcR3T0tI2paenf7Zs+bLdFy5Wnb99+/a12trao7W1taeePn36Y0NDA/8vD/vixfNnDx8+XD5//vyJmBQpKSnDc3JyNuIgGxoaGh/dvXvn5rWaal61atXu9I7pQ1NSUoZBBykpKRmWm5u7EZMjlNy+c+vq3t/3lo4dO3ZQUlLSQEgypKWlTSoqKvr84cOHD1pbW1sfNTY2otFvGr8TbeCrZxX5/gDH0I4NfdFvGp+x8eO6I0cOly9bvmyXw+HoDklASWFhYWldXV0zWlI/fvJYSiAw0mN4P0GrXU8O+z42HFNTU/Nt/ujR/cLhcBESBj6/f/qX03UoPrK6sFjDUWLnO4ihQ63PCoVCXSEBQqFQt8WLF3/1pLFR3WxoAEwR7wcSqmxfT+2NjY1Ny5cvL9NrRyRxd0rLzMw8ePbcWR6Fp5UWGwJQ0jEE0AjKcQRfvXdCCmptbam5cOH8ocLCwlLRZkUoRsTxxClTJu97UFf3FyqpIlrGKCTx2SGAxIk9kZP7KqQALEh1dfXeTp06dQObiEUOF5eUlOx42tT05749qGAYuwiKvP7njQBWmKKiRXtKSkq+qKur+7OxpkY1x20RiFy6dZs2rT+FyyW+Z/Ui8SKAVaZiyzbt2LZt69qFCxduQWOT1n0OmKOgS5cuK3D9xhe/lZUVhzMzM0eDAdLS0sZ4PJ4NbvfmfZs3b9rr9Xi2u1yu9W63e43b416L5Ha7t6HWFI93Z/GmTZ9u3rhxQ5nX4/nC6XRuQyE+n2+f3+8/XlJSsm/s2LH9QYf09IyxgYD/pN/vP+V0Otfh1yiv17uHFaPH7d5ZHAgETgUCgcrCwsI1brf7Y6/X+7XP5/seDXE4HL3BAIGT4U7bAwH/yUDAf9Lj8SzSE56SkjIQf7vd7t0Ypz0hGhiZf8bnO4GJVBZ27NgxRy18a2Bgp9/vPx2Jk7tCVxHLh8dE/Aaxwimj0+nctHTp0g3Lli0rWbBgwby5c+eOkjPCJFYIdEI7IjGO4+GcXP2jIyDLgxg8B32RmBoVDoeLRo0aNRDS09OLhDBKrImUIp9P+/o0CJISYEUA77sZc1+OBJ8/VgoXnSE9Pb0UhVIimVkvWSLEvd8e0jFzIeY5qyuZQz4fM24kXzQK/QQJUFhYOJ3KBFViiK8jInENiA1gxKyVuPAjJABM80RUATLA9xH3jKI6w7YJoL1R2iTEuYsEWIYEwLBKRO3AAqGa6RjbBNDeKN+MnJIIbicBliMBMAMUUQewQGCUYdgmgPZG+WakChFcRwKsQAJguiiiW+CBsIg2GRvTNgG0N8o3wxQDuJYEWIkEwEWbiGyRggYj9TFJAl6KmVfZGxGsJwFWIgEwGxXRKiBQXoOdO7yKQTNlXoS3kACrkACYiYrIDiloNqolbgTYF/6fJMBqJADm4CLa3R4peDSqJW4E2H4nJMBqJADm4EkiBU6jtcSNANvvmARYgwTAfDtJpBDUWUvcCLD9ikiANUgAzLWTRAocRmuJGwG2XzEJsAYJkIpSbOHvQgRvJkHWIQH+8x+KIP5dw/u8vby8fDQUUEABBfyX+QfkIcIfCkjiqgAAAABJRU5ErkJggg==" alt="Firefox">
+                <p>Firefox</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 获取当前URL并显示
+        window.onload = function() {
+            // 从源URL获取真实的URL地址
+            var sourceUrl = document.referrer;
+            
+            // 保存原始URL到本地存储
+            if (sourceUrl && sourceUrl.indexOf('browser_notice.html') === -1) {
+                localStorage.setItem('originalUrl', sourceUrl);
+            }
+            
+            // 优先使用 referrer，然后使用本地存储的URL，最后使用默认值
+            var currentUrl = sourceUrl || localStorage.getItem('originalUrl') || window.location.origin;
+            document.getElementById('currentUrl').innerText = currentUrl;
+            
+            // 阻止特定的浏览器行为
+            preventBrowserActions();
+        }
+        
+        // 防止浏览器操作的函数
+        function preventBrowserActions() {
+            // 阻止某些可能的浏览器行为
+            document.addEventListener('keydown', function(e) {
+                // 阻止常用快捷键 (Ctrl+C, Ctrl+V, Ctrl+S, Ctrl+X)
+                if (e.ctrlKey || e.metaKey) {
+                    if (e.keyCode == 67 || e.keyCode == 86 || e.keyCode == 83 || e.keyCode == 88) {
+                        if (e.target.id !== 'currentUrl') {
+                            e.preventDefault();
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 复制链接功能
+        function copyToClipboard() {
+            var urlText = document.getElementById('currentUrl');
+            var textArea = document.createElement('textarea');
+            textArea.value = urlText.innerText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                var successful = document.execCommand('copy');
+                var copySuccess = document.getElementById('copySuccess');
+                copySuccess.style.display = 'block';
+                
+                setTimeout(function() {
+                    copySuccess.style.display = 'none';
+                }, 2000);
+            } catch (err) {
+                console.error('复制失败:', err);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+    </script>
+</body>
+</html> 

@@ -2,28 +2,85 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-	<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+    <!-- 添加QQ和微信浏览器识别的元标签 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- 屏蔽微信和QQ -->
+    <meta itemprop="wxopenid" content="no_wx">
+    <meta name="applicable-device" content="pc,mobile">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <!-- 防止QQ和微信自动探测 -->
+    <meta name="robots" content="noarchive">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Expires" content="0">
+
 	<script>LA.init({id:"KRt6E42c1UxwGIdQ",ck:"KRt6E42c1UxwGIdQ"})</script>
-
-
-    
-      <!-- 加入微信/QQ禁止访问检测 -->
-      <script>
-        var ua = navigator.userAgent.toLowerCase();
-        if (ua.indexOf("micromessenger") !== -1 || ua.indexOf("qq/") !== -1) {
-            document.documentElement.innerHTML = `
-                <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#f2f2f2;text-align:center;padding:20px;">
-                    <div>
-                        <h2 style="color:#e74c3c;">⚠️ 请使用浏览器打开</h2>
-                        <p style="color:#333;font-size:16px;line-height:1.6;">
-                            当前页面禁止在微信或QQ中访问。<br>请点击右上角，选择「在浏览器中打开」继续访问。
-                        </p>
-                    </div>
-                </div>`;
+    <!-- 添加QQ和微信浏览器检测代码 -->
+    <script>
+        // 检测是否在微信或QQ浏览器中打开
+        function checkBrowser() {
+            var ua = navigator.userAgent.toLowerCase();
+            var isWeixin = ua.indexOf('micromessenger') != -1;
+            var isQQ = ua.indexOf(' qq/') != -1 || ua.indexOf('mqqbrowser') != -1;
+            
+            if (isWeixin || isQQ) {
+                // 如果是微信或QQ浏览器，跳转到提示页面
+                window.location.replace('browser_notice.html');
+                return false;
+            }
+            return true;
+        }
+        
+        // 页面加载时执行检测
+        window.onload = function() {
+            checkBrowser();
+        }
+        
+        // 在页面加载之前检测，更快拦截
+        if (checkBrowser() === false) {
+            window.location.replace('browser_notice.html');
+        }
+        
+        // 禁用右键菜单和长按菜单（阻止复制链接等操作）
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        
+        // 禁用长按弹出菜单
+        document.addEventListener('touchstart', function(e) {
+            e.target.addEventListener('touchend', function(e) {
+                e.preventDefault();
+            }, {once: true});
+        });
+        
+        // 阻止选择文本
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+        });
+        
+        // 尝试禁用剪贴板操作
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+        });
+        
+        // 阻止某些可能的浏览器行为
+        document.addEventListener('keydown', function(e) {
+            // 阻止常用快捷键
+            if (e.ctrlKey || e.metaKey) {
+                if (e.keyCode == 67 || e.keyCode == 86 || e.keyCode == 83 || e.keyCode == 88) {
+                    e.preventDefault();
+                }
+            }
+        });
+        
+        // 创建iframe检测（有些浏览器可能会尝试加载页面为iframe）
+        if (window != top) {
+            top.location.href = window.location.href;
         }
     </script>
-
-
     <title>好卡好货流量卡引导页</title>
     <!--为搜索引擎定义关键词-->
     <meta name="keywords" content="大流量卡 大流量卡购买 大流量下单 正规大流量卡购买 正规大流量卡下单 官方大流量卡 正规流量卡 好卡好货流量卡 好卡好货店铺">
@@ -33,8 +90,6 @@
     <meta name="author" content="好卡好货流量卡">
     <!--网站版权-->
     <meta name="copyright" content="好卡好货流量卡">
-    <!--指定IE和Chrome使用最新版本渲染当前页面-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!--指导浏览器如何缓存某个响应以及缓存多长时间-->
     <!--no-cache:先发送请求,与服务器确认该资源是否被更改,如果未被更改,则使用缓存
     no-store:不允许缓存,每次都要去服务器上,下载完整的响应(安全措施)
@@ -68,9 +123,6 @@
     <link rel="stylesheet" type="text/css" href="fonts/fonts.css"><!--阿里巴巴矢量图css-->
     <link rel="stylesheet" href="https://rl1.cc/3/fonts/iconfont.css"><!--阿里巴巴矢量图css-->
     <link rel="stylesheet" href="assets/css/new_file.css"><!--阿里巴巴矢量图css-->
-    <!--51统计-->
-    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-<script>LA.init({id:"KRt6E42c1UxwGIdQ",ck:"KRt6E42c1UxwGIdQ"})</script>
     <style>
         .popup-overlay {
             position: fixed;
