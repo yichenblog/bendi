@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
 	<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
 	<script>LA.init({id:"KRt6E42c1UxwGIdQ",ck:"KRt6E42c1UxwGIdQ"})</script>
+
+
+    
+      <!-- 加入微信/QQ禁止访问检测 -->
+      <script>
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.indexOf("micromessenger") !== -1 || ua.indexOf("qq/") !== -1) {
+            document.documentElement.innerHTML = `
+                <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#f2f2f2;text-align:center;padding:20px;">
+                    <div>
+                        <h2 style="color:#e74c3c;">⚠️ 请使用浏览器打开</h2>
+                        <p style="color:#333;font-size:16px;line-height:1.6;">
+                            当前页面禁止在微信或QQ中访问。<br>请点击右上角，选择「在浏览器中打开」继续访问。
+                        </p>
+                    </div>
+                </div>`;
+        }
+    </script>
+
+
     <title>好卡好货流量卡引导页</title>
     <!--为搜索引擎定义关键词-->
     <meta name="keywords" content="大流量卡 大流量卡购买 大流量下单 正规大流量卡购买 正规大流量卡下单 官方大流量卡 正规流量卡 好卡好货流量卡 好卡好货店铺">
