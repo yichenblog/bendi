@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="120" viewBox="0 0 200 120">
+  <!-- 卡片背景 -->
+  <rect width="200" height="120" rx="10" fill="#06b6d4" />
+  
+  <!-- 卡片效果 -->
+  <path d="M20,20 Q50,10 80,30 T180,25" fill="none" stroke="#0891b2" stroke-width="2" opacity="0.4" />
+  <path d="M30,40 Q60,30 90,50 T190,45" fill="none" stroke="#0891b2" stroke-width="2" opacity="0.4" />
+  <path d="M10,60 Q40,50 70,70 T170,65" fill="none" stroke="#0891b2" stroke-width="2" opacity="0.4" />
+  
+  <!-- 卡片内容背景 -->
+  <rect x="30" y="30" width="140" height="60" rx="5" fill="#f8fafc" opacity="0.9" />
+  
+  <!-- SIM卡芯片 -->
+  <rect x="40" y="40" width="15" height="20" rx="2" fill="#06b6d4" />
+  
+  <!-- 信号图标 -->
+  <path d="M130,50 L135,50 L135,38 L130,38 Z" fill="#06b6d4" opacity="0.6" />
+  <path d="M140,50 L145,50 L145,34 L140,34 Z" fill="#06b6d4" opacity="0.7" />
+  <path d="M150,50 L155,50 L155,30 L150,30 Z" fill="#06b6d4" opacity="0.8" />
+  
+  <!-- 卡片文字 -->
+  <text x="65" y="55" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" font-weight="bold" fill="#06b6d4">中国联通卡</text>
+</svg> 

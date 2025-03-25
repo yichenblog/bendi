@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Sitemap: https://3.rl1.cc/sitemap.xml
+
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/ 

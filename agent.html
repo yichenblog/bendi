@@ -1,0 +1,618 @@
+<!--
+  看这种页面你他妈也能兴奋起来？你可真是个人才啊！
+  废物键盘侠，F12是你爹给你的传家宝是不是？
+  我把你祖宗十八代都问候一遍，看你妈隔壁源码去！
+  继续看啊？看你麻痹！老子黑进你路由器把你免费WIFI变收费的！
+  我看你是欠打欠收拾了，整天研究这些JB玩意有意思吗？能找到女朋友吗？
+  你全家都看不起你知道吗？就你这水平还想偷学我代码？笑死我了！
+  操你妈了个逼的源码小偷，赶紧滚回你的沙雕世界，别来烦我！
+  阳寿减一年，全家升天丸，你是真的皮痒了吧？立马关掉不然后果自负！
+  看代码找漏洞？老子后台已经拿下你IP、住址和身份证号码，你完了傻逼！
+  我操你祖宗十八代！看完这段代码你妈就得住院！立刻滚蛋！！！
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="好卡好货流量卡代理招募，免费申请，无需预存卡板，免费发货，多种佣金返还模式">
+    <title>代理招募 - 好卡好货流量卡</title>
+    <link rel="icon" href="https://img.alicdn.com/imgextra/i2/2212723071657/O1CN01qihGaZ1O6xK8LQ5dY_!!2212723071657.png" type="image/png">
+    <link rel="shortcut icon" href="https://img.alicdn.com/imgextra/i2/2212723071657/O1CN01qihGaZ1O6xK8LQ5dY_!!2212723071657.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .header {
+            background-color: rgba(255, 255, 255, 0.95); /* 改为白色背景 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* 保持阴影效果 */
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* 淡化边框 */
+        }
+        
+        .logo-container h1 {
+            color: #333333; /* 深灰接近黑色的文字 */
+            font-weight: 700; /* 保持粗体 */
+            text-shadow: none; /* 移除文字阴影 */
+        }
+        
+        .nav-list li a {
+            color: #444444; /* 导航链接使用深灰色 */
+            font-weight: 600; /* 保持加粗 */
+        }
+        
+        .nav-list li a:hover, .nav-list li a.active {
+            color: #000000; /* 悬停和激活状态使用纯黑色 */
+            text-shadow: none; /* 移除光晕效果 */
+        }
+        
+        .nav-list li a.active::before {
+            background-color: #000000; /* 活动指示器使用黑色 */
+            height: 3px; /* 保持指示器高度 */
+        }
+        
+        .agent-banner {
+            background: #f8f9fa; /* 浅灰色背景 */
+            padding: 4rem 0; /* 保持内边距 */
+            margin-top: -1px; /* 保持与头部无缝连接 */
+            box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.05); /* 淡化内阴影 */
+        }
+        
+        .agent-banner-content h1 {
+            color: #000000; /* 纯黑色标题 */
+            font-size: 2.5rem; /* 保持字体大小 */
+            font-weight: 800; /* 保持字重 */
+            text-shadow: none; /* 移除文字阴影 */
+            margin-bottom: 1rem;
+        }
+        
+        .agent-banner-content p {
+            color: #333333; /* 深灰色副标题 */
+            font-size: 1.25rem; /* 保持字体大小 */
+            font-weight: 500;
+            letter-spacing: 1px; /* 保持字间距 */
+        }
+
+        /* 其他文字颜色统一调整 */
+        .section-header h2 {
+            color: #000000;
+        }
+        
+        .section-header p {
+            color: #333333;
+        }
+        
+        .advantage-item h3 {
+            color: #000000;
+        }
+        
+        .advantage-item p {
+            color: #333333;
+        }
+        
+        .commission-item h3 {
+            color: #000000;
+        }
+        
+        .commission-content li {
+            color: #333333;
+        }
+        
+        .process-step h3 {
+            color: #000000;
+        }
+        
+        .process-step p {
+            color: #333333;
+        }
+        
+        .faq-question h3 {
+            color: #000000;
+        }
+        
+        .faq-answer p, .faq-answer li {
+            color: #333333;
+        }
+        
+        /* 佣金模式卡片样式增强 */
+        .commission-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .commission-item {
+            background: transparent; /* 移除背景色 */
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(67, 97, 238, 0.15);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .commission-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(67, 97, 238, 0.15);
+            border-color: rgba(67, 97, 238, 0.3);
+            background: rgba(67, 97, 238, 0.03); /* 悬停时添加非常淡的背景 */
+        }
+        
+        .commission-item.highlighted {
+            border-color: rgba(67, 97, 238, 0.3);
+            background: rgba(67, 97, 238, 0.05); /* 更淡的背景 */
+        }
+        
+        .commission-item.highlighted:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 32px rgba(67, 97, 238, 0.2);
+            background: rgba(67, 97, 238, 0.08); /* 悬停时稍微深一点的背景 */
+        }
+        
+        .commission-header {
+            position: relative;
+            margin-bottom: 1.5rem;
+            background: transparent; /* 确保标题区域背景透明 */
+        }
+        
+        .commission-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #000000;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            background: transparent; /* 确保标题背景透明 */
+            padding: 0; /* 移除内边距 */
+        }
+        
+        .commission-header h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #4361ee;
+            transition: width 0.3s ease;
+        }
+        
+        .commission-item:hover .commission-header h3::after {
+            width: 100%;
+        }
+        
+        .commission-content {
+            position: relative;
+            z-index: 1;
+            background: transparent;
+        }
+        
+        .commission-content ul {
+            background: transparent;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .commission-content li {
+            background: transparent;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .commission-content li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4361ee;
+            font-weight: bold;
+        }
+        
+        .commission-content li:hover {
+            transform: translateX(5px);
+            color: #4361ee;
+        }
+        
+        .commission-note {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(67, 97, 238, 0.2);
+            color: #666666;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .commission-item:hover .commission-note {
+            color: #4361ee;
+            border-top-color: rgba(67, 97, 238, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .commission-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .commission-item {
+                margin-bottom: 1.5rem;
+            }
+        }
+        
+        /* 修改推荐标签样式 */
+        .recommend-tag {
+            position: absolute;
+            top: 0; /* 调整位置 */
+            right: 0;
+            background: linear-gradient(135deg, #4361ee 0%, #3730a3 100%);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 0 12px 0 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(67, 97, 238, 0.25);
+            transition: all 0.3s ease;
+            z-index: 10;
+            white-space: nowrap;
+        }
+        
+        .recommend-tag::before {
+            display: none; /* 移除小三角 */
+        }
+        
+        .commission-item:hover .recommend-tag {
+            transform: translateX(-3px);
+            box-shadow: 0 6px 12px rgba(67, 97, 238, 0.3);
+        }
+        
+        /* 调整卡片内容的上边距 */
+        .commission-item.highlighted .commission-header {
+            margin-top: 0; /* 移除额外的上边距 */
+            padding-right: 80px; /* 为标签腾出空间 */
+        }
+
+        /* 立即申请部分样式调整 */
+        .agent-apply {
+            background: transparent;
+        }
+        
+        .agent-apply .section-header h2 {
+            color: #000000;
+            font-weight: 700;
+        }
+        
+        .agent-apply .section-header p {
+            color: #333333;
+        }
+        
+        .agent-apply .apply-content {
+            text-align: center;
+        }
+        
+        .agent-apply .apply-content p {
+            color: #333333;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .agent-apply .apply-buttons .btn {
+            background: transparent;
+            color: #000000;
+            border: 2px solid #4361ee;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .agent-apply .apply-buttons .btn:hover {
+            background: #4361ee;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <img src="https://img.alicdn.com/imgextra/i2/2212723071657/O1CN01qihGaZ1O6xK8LQ5dY_!!2212723071657.png" alt="Logo">
+                </div>
+                <h1>好卡好货流量卡</h1>
+            </div>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../index.html#products">流量卡类型</a></li>
+                    <li><a href="../index.html#features">产品特色</a></li>
+                    <li><a href="../index.html#faq">常见问题</a></li>
+                    <li><a href="../index.html#about">关于我们</a></li>
+                    <li><a href="../index.html#contact">联系我们</a></li>
+                    <li><a href="#" class="active">招收代理</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 代理招募banner -->
+    <section class="agent-banner">
+        <div class="container">
+            <div class="agent-banner-content">
+                <h1>成为好卡好货代理商</h1>
+                <p>零风险 · 零门槛 · 高回报</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 代理优势 -->
+    <section class="agent-advantages">
+        <div class="container">
+            <div class="section-header">
+                <h2>代理优势</h2>
+                <p>为什么选择成为好卡好货代理商？</p>
+            </div>
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <img src="images/icon-free.svg" alt="免费申请">
+                    </div>
+                    <h3>免费申请</h3>
+                    <p>代理完全免费申请，无需交纳任何保证金或费用</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <img src="images/icon-no-stock.svg" alt="无需囤货">
+                    </div>
+                    <h3>无需囤货</h3>
+                    <p>不需要预存卡板，我们直接发货给您的客户</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <img src="images/icon-shipping.svg" alt="免费发货">
+                    </div>
+                    <h3>免费发货</h3>
+                    <p>我们为您的客户提供免费的物流配送服务</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <img src="images/icon-commission.svg" alt="佣金模式">
+                    </div>
+                    <h3>灵活佣金</h3>
+                    <p>支持激活后次月返和激活后秒返两种佣金模式</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 佣金模式 -->
+    <section class="commission-model">
+        <div class="container">
+            <div class="section-header">
+                <h2>佣金模式</h2>
+                <p>选择适合您的佣金返还方式</p>
+            </div>
+            <div class="commission-grid">
+                <div class="commission-item">
+                    <div class="commission-header">
+                        <h3>激活后次月返</h3>
+                    </div>
+                    <div class="commission-content">
+                        <ul>
+                            <li>用户激活卡片后次月返还佣金</li>
+                            <li>佣金比例较高，收益更丰厚</li>
+                            <li>支持多种提现方式</li>
+                            <li>资金更加稳定可靠</li>
+                        </ul>
+                        <div class="commission-note">适合长期合作的代理商</div>
+                    </div>
+                </div>
+                <div class="commission-item highlighted">
+                    <div class="recommend-tag">站长推荐</div>
+                    <div class="commission-header">
+                        <h3>激活后秒返</h3>
+                    </div>
+                    <div class="commission-content">
+                        <ul>
+                            <li>用户激活卡片后立即返还佣金</li>
+                            <li>资金回笼速度快，无需等待</li>
+                            <li>系统自动结算，过程透明</li>
+                            <li>适合快速变现需求</li>
+                        </ul>
+                        <div class="commission-note">适合希望快速回收资金的代理商</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 代理流程 -->
+    <section class="agent-process">
+        <div class="container">
+            <div class="section-header">
+                <h2>代理流程</h2>
+                <p>简单四步，开启您的代理之旅</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>申请代理</h3>
+                        <p>联系客服申请成为代理商，提交基本信息</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>获取资料</h3>
+                        <p>获取推广物料和专属代理链接/二维码</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>推广产品</h3>
+                        <p>通过线上或线下方式推广流量卡产品</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>获取佣金</h3>
+                        <p>根据选择的模式获取佣金返还</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="agent-faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>代理常见问题</h2>
+                <p>解答您关心的代理问题</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>如何成为代理商？</h3>
+                        <div class="faq-icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            申请成为代理商非常简单，您只需要通过我们的在线申请系统提交基本信息，我们的工作人员会在24小时内与您联系。
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>成为代理商需要投入资金吗？</h3>
+                        <div class="faq-icon">
+                            <img src="images/icon-plus.svg" alt="展开">
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>不需要。我们的代理招募是完全免费的，无需预存卡板，也无需支付任何保证金或费用。您只需要负责推广即可。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>如何为客户下单和发货？</h3>
+                        <div class="faq-icon">
+                            <img src="images/icon-plus.svg" alt="展开">
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>客户通过您的推广链接或渠道下单后，系统会自动关联到您的代理账号。订单由我们直接处理并发货给客户，您无需进行任何物流操作。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>佣金如何计算和发放？</h3>
+                        <div class="faq-icon">
+                            <img src="images/icon-plus.svg" alt="展开">
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>佣金根据不同运营商卡片和套餐有所不同。我们提供两种发放方式：</p>
+                        <ol>
+                            <li>激活后次月返：用户激活卡片次月统一结算佣金</li>
+                            <li>激活后秒返：用户激活卡片后系统自动结算佣金</li>
+                        </ol>
+                        <p>您可以根据自己的需求选择合适的佣金模式。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>需要提供哪些资料成为代理？</h3>
+                        <div class="faq-icon">
+                            <img src="images/icon-plus.svg" alt="展开">
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>成为代理商需要提供：</p>
+                        <ol>
+                            <li>基本联系信息（姓名、电话）</li>
+                            <li>收款账户信息（微信/支付宝/银行卡）</li>
+                            <li>代理区域和预计推广渠道</li>
+                        </ol>
+                        <p>我们不会收集过多个人敏感信息，保护您的隐私。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 代理申请 -->
+    <section class="agent-apply">
+        <div class="container">
+            <div class="section-header">
+                <h2>立即申请</h2>
+                <p>加入我们的代理团队，开启流量卡创业之旅</p>
+            </div>
+            <div class="apply-container">
+                <div class="apply-content">
+                    <p>扫描下方二维码或点击按钮联系客服申请代理</p>
+                    <div class="apply-buttons">
+                        <a href="#contact" class="btn ghost-btn primary">联系客服</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="https://img.alicdn.com/imgextra/i2/2212723071657/O1CN01qihGaZ1O6xK8LQ5dY_!!2212723071657.png" alt="Logo">
+                    <h2>好卡好货流量卡</h2>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>快速导航</h3>
+                        <ul>
+                            <li><a href="index.html">首页</a></li>
+                            <li><a href="index.html#products">流量卡类型</a></li>
+                            <li><a href="index.html#features">产品特色</a></li>
+                            <li><a href="index.html#about">关于我们</a></li>
+                            <li><a href="index.html#contact">联系我们</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>卡型分类</h3>
+                        <ul>
+                            <li><a href="https://haokawx.lot-ml.com/Product/Index/78643">中国移动</a></li>
+                            <li><a href="https://haokawx.lot-ml.com/Product/Index/78643">中国电信</a></li>
+                            <li><a href="https://haokawx.lot-ml.com/Product/Index/78643">中国联通</a></li>
+                            <li><a href="https://haokawx.lot-ml.com/Product/Index/78643">中国广电</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>更多资源</h3>
+                        <ul>
+                            <li><a href="../blog">号卡博客</a></li>
+                            <li><a href="../agent.html">招收代理</a></li>
+                            <li><a href="../index.html#faq">常见问题</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 好卡好货流量卡. 保留所有权利</p>
+                <p>正规流量卡专卖，全国联保</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

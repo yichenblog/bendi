@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- 圆形背景 -->
+  <circle cx="100" cy="100" r="90" fill="#4F46E5"/>
+  
+  <!-- SIM卡图标 -->
+  <path d="M60 70 L60 130 L140 130 L140 70 Z" fill="#ffffff"/>
+  <path d="M75 70 L75 85 L90 85 L90 70 Z" fill="#4F46E5"/>
+  <rect x="105" y="90" width="20" height="10" fill="#4F46E5"/>
+  <rect x="105" y="105" width="20" height="10" fill="#4F46E5"/>
+  <rect x="75" y="90" width="20" height="10" fill="#4F46E5"/>
+  <rect x="75" y="105" width="20" height="10" fill="#4F46E5"/>
+  
+  <!-- 信号波纹 -->
+  <path d="M50 65 Q100 35 150 65" stroke="#ffffff" stroke-width="6" fill="none"/>
+  <path d="M60 55 Q100 30 140 55" stroke="#ffffff" stroke-width="4" fill="none"/>
+  <path d="M70 45 Q100 25 130 45" stroke="#ffffff" stroke-width="2" fill="none"/>
+</svg> 

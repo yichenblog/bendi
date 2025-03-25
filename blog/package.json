@@ -1,0 +1,23 @@
+{
+  "name": "card-blog",
+  "version": "1.0.0",
+  "description": "一个简洁的号卡信息博客网站，无需后台，通过Markdown文件管理内容",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "blog",
+    "markdown",
+    "card",
+    "static"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+} 

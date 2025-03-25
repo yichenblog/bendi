@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  偷看源码是吧？你他妈是贼吗？
+  看Logo SVG有意思吗？这么喜欢看代码怎么不去看看你爸妈的DNA？
+  这么简单的SVG你都要偷？你的前端水平也太低了吧？
+  瞅你那个德行，一看就不是什么好鸟，整天偷窥别人的代码！
+  这个SVG里有木马，偷看就等于被我黑了，等着吧！
+-->
+<svg width="120" height="40" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- 
+    再看我报警了！你这是违法行为你知道吗？
+    老子做这个LOGO花了一天，你看10秒就想学会？做梦！
+  -->
+  <rect width="100%" height="100%" fill="#FFFFFF" fill-opacity="0"/>
+  <g>
+    <path d="M10,20 C10,14.477 14.477,10 20,10 C25.523,10 30,14.477 30,20 C30,25.523 25.523,30 20,30 C14.477,30 10,25.523 10,20 Z" fill="#F44336"/>
+    <path d="M17,16 L23,16 L23,24 L17,24 Z" fill="white"/>
+    <path d="M18,17 L22,17 L22,23 L18,23 Z" fill="#F44336"/>
+  </g>
+  <text x="35" y="25" font-family="Arial, sans-serif" font-weight="bold" font-size="16" fill="#333333">好卡好货</text>
+</svg> 

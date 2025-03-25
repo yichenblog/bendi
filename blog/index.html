@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>好卡好货流量卡 - 通信号卡资讯分享平台</title>
+    <meta name="description" content="好卡好货流量卡是专注于分享通信相关资讯的平台，提供最新的号卡优惠、通信技术、运营商活动等内容。">
+    <meta name="keywords" content="号卡,优惠套餐,中国移动,中国联通,中国电信,通信技术,手机卡,流量套餐">
+    <meta name="author" content="好卡好货流量卡">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="好卡好货流量卡 - 通信号卡资讯分享平台">
+    <meta property="og:description" content="好卡好货流量卡是专注于分享通信相关资讯的平台，提供最新的号卡优惠、通信技术、运营商活动等内容。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://3.rl1.cc/blog/">
+    <meta property="og:image" content="https://img.alicdn.com/imgextra/i2/2212723071657/O1CN01qihGaZ1O6xK8LQ5dY_!!2212723071657.png">
+    <link rel="canonical" href="https://3.rl1.cc/blog/">
+    <!-- 网站图标 -->
+    <link rel="icon" href="https://img.alicdn.com/imgextra/i2/2212723071657/O1CN01qihGaZ1O6xK8LQ5dY_!!2212723071657.png" type="image/png">
+    <link rel="apple-touch-icon" href="https://img.alicdn.com/imgextra/i2/2212723071657/O1CN01qihGaZ1O6xK8LQ5dY_!!2212723071657.png ">
+    <link rel="shortcut icon" href="https://img.alicdn.com/imgextra/i2/2212723071657/O1CN01qihGaZ1O6xK8LQ5dY_!!2212723071657.png" type="image/png">
+    <link rel="stylesheet" href="public/css/style.css">
+    <!-- 引入字体图标 -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 引入代码高亮库 -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <!-- 引入Markdown渲染库 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/marked/4.3.0/marked.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <!-- 备用Markdown渲染库（如果主要CDN加载失败） -->
+    <script>
+        // 如果主CDN加载失败，尝试备用CDN
+        window.addEventListener('error', function(e) {
+            const target = e.target;
+            if (target.tagName === 'SCRIPT' && target.src.includes('marked')) {
+                console.log('Marked库加载失败，尝试加载备用库...');
+                const script = document.createElement('script');
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js';
+                document.head.appendChild(script);
+                
+                // 如果备用CDN也失败，尝试使用本地fallback
+                script.onerror = function() {
+                    console.log('备用CDN也失败，尝试加载本地文件...');
+                    const localScript = document.createElement('script');
+                    localScript.src = 'public/js/libs/marked.min.js'; // 假设你已经下载了这个文件
+                    document.head.appendChild(localScript);
+                    
+                    // 如果本地文件也失败，提供一个简单的fallback实现
+                    localScript.onerror = function() {
+                        console.log('所有Markdown库加载失败，使用简单替代方案');
+                        window.marked = function(text) {
+                            // 非常简单的Markdown转HTML实现
+                            return text
+                                .replace(/^# (.*$)/gm, '<h1>$1</h1>')
+                                .replace(/^## (.*$)/gm, '<h2>$1</h2>')
+                                .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+                                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                                .replace(/\n/g, '<br>');
+                        };
+                        window.marked.parse = window.marked;
+                    };
+                };
+            }
+        }, true);
+    </script>
+    <style>
+        .ad-container {
+            text-align: center;
+            margin: 15px auto 25px;
+            max-width: 100%;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        .ad-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .article-ad {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        .article-ad img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .article-ad-bottom {
+            margin-top: 30px;
+            margin-bottom: 0;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航栏 -->
+        <header class="header">
+            <div class="logo">
+                <h1>好卡好货流量卡</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#home" id="home-link" class="active">首页</a></li>
+                    <li><a href="#articles" id="articles-link">文章</a></li>
+                    <li><a href="#about" id="about-link">关于</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- 主要内容区 -->
+        <main class="main-content">
+            <!-- 广告区域 -->
+            <div class="ad-container">
+                <a href="https://3.rl1.cc" target="_blank">
+                    <img src="https://img.alicdn.com/imgextra/i2/2212723071657/O1CN011SD1y61O6xJOBTzHe_!!2212723071657.gif" alt="广告" title="点击查看详情">
+                </a>
+            </div>
+            
+            <!-- 文章列表 -->
+            <section class="content-section" id="articles">
+                <div class="articles-header">
+                    <h2>文章列表</h2>
+                    <div class="article-controls">
+                        <input type="text" id="search-input" placeholder="搜索文章..." />
+                    </div>
+                </div>
+                
+                <div class="article-list" id="article-list">
+                    <!-- 文章卡片将由JS动态生成 -->
+                </div>
+            </section>
+
+            <!-- 文章内容区 -->
+            <section class="content-section" id="article-content">
+                <div class="article-container">
+                    <div class="article-actions">
+                        <button id="back-to-list"><i class="fas fa-arrow-left"></i> 返回列表</button>
+                        <div class="article-meta" id="article-meta">
+                            <!-- 文章元数据将在此显示 -->
+                        </div>
+                    </div>
+                    <article id="article-body">
+                        <!-- 文章内容将在此显示 -->
+                    </article>
+                </div>
+            </section>
+
+            <!-- 关于页面 -->
+            <section class="content-section" id="about">
+                <h2>关于好卡好货流量卡</h2>
+                <div class="about-content">
+                    <p>好卡好货流量卡是一个专注于分享通信相关资讯的平台。这里有最新的号卡优惠、通信技术、运营商活动等内容。</p>
+                    <p>写个毛的关于页面啊，欢迎各位老板下单，下单的都是我大哥，我大哥永远是对的。</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>© 2024 好卡好货流量卡 | 一个简洁的号卡资讯分享平台</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 加载配置和脚本 -->
+    <script src="public/js/main.js"></script>
+</body>
+</html> 

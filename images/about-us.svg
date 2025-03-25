@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <!-- 背景 -->
+  <rect x="0" y="0" width="600" height="400" fill="#f9fafb"/>
+  
+  <!-- 办公室背景 -->
+  <rect x="50" y="50" width="500" height="300" rx="15" fill="#ffffff" stroke="#e5e7eb" stroke-width="2"/>
+  
+  <!-- 公司标志 -->
+  <g transform="translate(250, 100)">
+    <circle cx="50" cy="50" r="40" fill="#4F46E5"/>
+    <path d="M30 35 L30 65 L70 65 L70 35 Z" fill="#ffffff"/>
+    <path d="M37 35 L37 42 L45 42 L45 35 Z" fill="#4F46E5"/>
+    <rect x="52" y="45" width="10" height="5" fill="#4F46E5"/>
+    <rect x="52" y="52" width="10" height="5" fill="#4F46E5"/>
+    <rect x="37" y="45" width="10" height="5" fill="#4F46E5"/>
+    <rect x="37" y="52" width="10" height="5" fill="#4F46E5"/>
+    <path d="M25 32 Q50 17 75 32" stroke="#ffffff" stroke-width="3" fill="none"/>
+    <path d="M30 27 Q50 15 70 27" stroke="#ffffff" stroke-width="2" fill="none"/>
+    <path d="M35 22 Q50 12 65 22" stroke="#ffffff" stroke-width="1" fill="none"/>
+  </g>
+  
+  <!-- 团队成员 -->
+  <g transform="translate(100, 200)">
+    <circle cx="30" cy="30" r="25" fill="#6b7280"/>
+    <circle cx="30" cy="20" r="10" fill="#f3f4f6"/>
+    <path d="M10 50 Q30 70 50 50" fill="#6b7280"/>
+  </g>
+  
+  <g transform="translate(180, 200)">
+    <circle cx="30" cy="30" r="25" fill="#4F46E5"/>
+    <circle cx="30" cy="20" r="10" fill="#f3f4f6"/>
+    <path d="M10 50 Q30 70 50 50" fill="#4F46E5"/>
+  </g>
+  
+  <g transform="translate(340, 200)">
+    <circle cx="30" cy="30" r="25" fill="#fb7185"/>
+    <circle cx="30" cy="20" r="10" fill="#f3f4f6"/>
+    <path d="M10 50 Q30 70 50 50" fill="#fb7185"/>
+  </g>
+  
+  <g transform="translate(420, 200)">
+    <circle cx="30" cy="30" r="25" fill="#06b6d4"/>
+    <circle cx="30" cy="20" r="10" fill="#f3f4f6"/>
+    <path d="M10 50 Q30 70 50 50" fill="#06b6d4"/>
+  </g>
+  
+  <!-- 装饰元素 -->
+  <path d="M50 180 L550 180" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="5,5"/>
+  <path d="M50 300 L550 300" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <!-- 标题 -->
+  <text x="300" y="350" font-family="Arial" font-size="18" font-weight="bold" fill="#4F46E5" text-anchor="middle">好卡好货流量卡 - 专业团队</text>
+</svg> 
