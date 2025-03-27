@@ -936,6 +936,97 @@
                 padding: 15px;
             }
         }
+
+        /* FAQ样式增强 */
+        .troubleshooting {
+            background: linear-gradient(145deg, #f8f9fa, #f0f2f5);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .troubleshooting h3 {
+            color: var(--secondary-color);
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+            text-align: center;
+            position: relative;
+        }
+
+        .troubleshooting h3::before {
+            content: '📋';
+            margin-right: 10px;
+        }
+
+        .problem-solution {
+            background: white;
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            border-left: 3px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .problem-solution:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.15);
+        }
+
+        .problem {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            padding-left: 10px;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .problem::before {
+            content: "❓";
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+
+        .problem::after {
+            content: "▼";
+            color: var(--primary-color);
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+        }
+
+        .problem-solution.active .problem::after {
+            transform: rotate(180deg);
+        }
+
+        .solution {
+            color: #666;
+            padding: 0 10px 0 35px;
+            position: relative;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .problem-solution.active .solution {
+            max-height: 200px;
+            padding: 10px 10px 10px 35px;
+            margin-top: 10px;
+            border-top: 1px dashed #e1e5e9;
+        }
+
+        .solution::before {
+            content: "💡";
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -994,8 +1085,8 @@
                 <div class="troubleshooting">
                     <h3>常见问题排查</h3>
                     <div class="problem-solution">
-                        <div class="problem">下载工具提示"连接被拒绝"</div>
-                        <div class="solution">这通常是因为网盘临时封禁了IP，建议等待30分钟后重试，或者更换网络环境。</div>
+                        <div class="problem">下载工具提示"连接被拒绝"或者"错误 403"，"错误 404"</div>
+                        <div class="solution">这通常是因为你没有更改下载工具的UA，请在下载工具中更改UA，重新下载。</div>
                     </div>
                     <div class="problem-solution">
                         <div class="problem">下载到一半突然速度降低</div>
@@ -1133,6 +1224,20 @@
                         collapsibleContent.style.maxHeight = '0px';
                         toggleIcon.style.transform = 'rotate(0)';
                     }, 10);
+                }
+            });
+            
+            // 添加FAQ问题交互效果
+            const problemSolutions = document.querySelectorAll('.problem-solution');
+            problemSolutions.forEach(item => {
+                const problem = item.querySelector('.problem');
+                problem.addEventListener('click', function() {
+                    item.classList.toggle('active');
+                });
+                
+                // 默认展开第一个问题
+                if (item === problemSolutions[0]) {
+                    item.classList.add('active');
                 }
             });
         });
